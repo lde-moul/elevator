@@ -3,6 +3,7 @@
 import CallButton from './CallButton';
 import CurrentFloorIndicator from './CurrentFloorIndicator';
 import FloorName from './FloorName';
+import '../../../css/main.css';
 
 import React from 'react';
 
@@ -50,7 +51,7 @@ export default () => {
   ]
 
   return (
-    <div>
+    <div className='building-panel'>
       {cells}
     </div>
   );
