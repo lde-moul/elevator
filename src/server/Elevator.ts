@@ -44,7 +44,7 @@ const getBestDirection = (elevator: ElevatorState): Direction => {
     return Direction.Static;
 };
 
-export const moveElevator = async (elevator: ElevatorState, io) => {
+const moveElevator = async (elevator: ElevatorState, io) => {
   await setTimeout(1000);
 
   elevator.floor += [ 1, 0, -1 ][elevator.direction];
@@ -65,7 +65,7 @@ export const moveElevator = async (elevator: ElevatorState, io) => {
   }
 };
 
-export const startElevator = async (elevator: ElevatorState, io) => {
+const startElevator = async (elevator: ElevatorState, io) => {
   elevator.direction = getBestDirection(elevator);
   emitState(elevator, io);
 
