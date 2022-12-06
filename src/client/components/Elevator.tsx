@@ -14,7 +14,7 @@ export default ({ state }: ElevatorProps) => {
   return (
     <div>
       <ElevatorPanel state={state} />
-      <BuildingPanel />
+      <BuildingPanel state={state} />
     </div>
   );
 }

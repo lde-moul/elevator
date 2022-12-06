@@ -1,5 +1,6 @@
 'use strict';
 
+import useSocket from '../socket';
 import { getFloorName } from '../Util';
 
 import React from 'react';
@@ -10,10 +11,17 @@ interface FloorButtonProps {
 };
 
 export default ({ floor, active }: FloorButtonProps) => {
+  const socket = useSocket();
+
+  const handlePress = () => {
+    if (!active)
+      socket.emit('request_from_elevator', floor);
+  };
+
   const name = getFloorName(floor);
 
   return (
-    <button>
+    <button type="button" onClick={handlePress}>
       {active ? `< ${name} >` : name}
     </button>
   );

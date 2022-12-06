@@ -2,53 +2,24 @@
 
 import CallButton from './CallButton';
 import CurrentFloorIndicator from './CurrentFloorIndicator';
+import ElevatorState from './ElevatorState';
 import FloorName from './FloorName';
 import '../../../css/main.css';
 
 import React from 'react';
 
-export default () => {
-  const cells = [
-    <FloorName floor={9} />,
-    <CurrentFloorIndicator active={false} />,
-    <CallButton />,
+interface BuildingPanelProps {
+  state: ElevatorState;
+};
 
-    <FloorName floor={8} />,
-    <CurrentFloorIndicator active={false} />,
-    <CallButton />,
-
-    <FloorName floor={7} />,
-    <CurrentFloorIndicator active={false} />,
-    <CallButton />,
-
-    <FloorName floor={6} />,
-    <CurrentFloorIndicator active={false} />,
-    <CallButton />,
-
-    <FloorName floor={5} />,
-    <CurrentFloorIndicator active={false} />,
-    <CallButton />,
-
-    <FloorName floor={4} />,
-    <CurrentFloorIndicator active={false} />,
-    <CallButton />,
-
-    <FloorName floor={3} />,
-    <CurrentFloorIndicator active={true} />,
-    <CallButton />,
-
-    <FloorName floor={2} />,
-    <CurrentFloorIndicator active={false} />,
-    <CallButton />,
-
-    <FloorName floor={1} />,
-    <CurrentFloorIndicator active={false} />,
-    <CallButton />,
-
-    <FloorName floor={0} />,
-    <CurrentFloorIndicator active={false} />,
-    <CallButton />,
-  ]
+export default ({ state }: BuildingPanelProps) => {
+  const cells = state.buildingRequestedFloors.map((requested, floor) =>
+    [
+      <FloorName floor={floor} />,
+      <CurrentFloorIndicator active={requested} />,
+      <CallButton floor={floor} />,
+    ]
+  ).reverse();
 
   return (
     <div className='building-panel'>
