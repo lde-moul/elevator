@@ -4,12 +4,16 @@ import ElevatorState, { Direction } from "../shared/ElevatorState";
 
 import { setTimeout } from "timers/promises";
 
+const emitState = (elevator: ElevatorState, io) =>
+  io.emit("elevator", elevator);
+
 const isFloorRequested = (floor: number, elevator: ElevatorState): boolean =>
   elevator.elevatorRequestedFloors[floor] || elevator.buildingRequestedFloors[floor];
 
-const forgetCurrentFloor = (elevator: ElevatorState) => {
+const forgetCurrentFloor = (elevator: ElevatorState, io) => {
   elevator.elevatorRequestedFloors[elevator.floor] = false;
   elevator.buildingRequestedFloors[elevator.floor] = false;
+  emitState(elevator, io);
 }
 
 const getDistanceToRequestedFloorAbove = (elevator: ElevatorState): number => {
@@ -40,44 +44,49 @@ const getBestDirection = (elevator: ElevatorState): Direction => {
     return Direction.Static;
 };
 
-export const moveElevator = async (elevator: ElevatorState) => {
+export const moveElevator = async (elevator: ElevatorState, io) => {
   await setTimeout(1000);
 
   elevator.floor += [ 1, 0, -1 ][elevator.direction];
+  emitState(elevator, io);
 
   if (isFloorRequested(elevator.floor, elevator)) {
     elevator.direction = Direction.Static;
     elevator.open = true;
+    emitState(elevator, io);
 
-    forgetCurrentFloor(elevator);
+    forgetCurrentFloor(elevator, io);
 
     await setTimeout(5000);
 
-    await startElevator(elevator);
+    await startElevator(elevator, io);
   } else {
-    await moveElevator(elevator);
+    await moveElevator(elevator, io);
   }
 };
 
-export const startElevator = async (elevator: ElevatorState) => {
+export const startElevator = async (elevator: ElevatorState, io) => {
   elevator.direction = getBestDirection(elevator);
+  emitState(elevator, io);
 
   if (elevator.direction !== Direction.Static) {
     elevator.open = false;
-    await moveElevator(elevator);
+    emitState(elevator, io);
+    await moveElevator(elevator, io);
   } else {
     elevator.processing = false;
   }
 };
 
-export const requestFloorByElevator = async (elevator: ElevatorState, floor: number) => {
+export const requestFloorByElevator = async (elevator: ElevatorState, io, floor: number) => {
   if (floor == elevator.floor)
     return;
 
   elevator.elevatorRequestedFloors[floor] = true;
+  emitState(elevator, io);
 
   if (!elevator.processing) {
     elevator.processing = true;
-    startElevator(elevator);
+    startElevator(elevator, io);
   }
 }
