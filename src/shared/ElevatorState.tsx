@@ -17,7 +17,7 @@ export default interface ElevatorState {
   processing: boolean;
 };
 
-export const getDefaultElevatorState = (): ElevatorState ({
+export const getDefaultElevatorState = (): ElevatorState => ({
   floor: 3,
   open: true,
   direction: Direction.Static,
