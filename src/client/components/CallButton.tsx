@@ -1,6 +1,6 @@
 'use strict';
 
-import ElevatorState from '../../shared/ElevatorState';
+import useSocket from '../socket';
 
 import React from 'react';
 
@@ -9,8 +9,13 @@ interface CallButtonProps {
 };
 
 export default ({ floor }: CallButtonProps) => {
+  const socket = useSocket();
+
+  const handlePress = () =>
+    socket.emit('request_from_building', floor);
+
   return (
-    <button>
+    <button type="button" onClick={handlePress}>
       CALL
     </button>
   );

@@ -77,11 +77,11 @@ const startElevator = async (elevator: ElevatorState, io) => {
   }
 };
 
-export const requestFloorByElevator = async (elevator: ElevatorState, io, floor: number) => {
+const requestFloor = async (elevator: ElevatorState, io, floor: number, requestedFloors: boolean[]) => {
   if (floor == elevator.floor)
     return;
 
-  elevator.elevatorRequestedFloors[floor] = true;
+  requestedFloors[floor] = true;
   emitElevatorState(elevator, io);
 
   if (!elevator.processing) {
@@ -89,6 +89,12 @@ export const requestFloorByElevator = async (elevator: ElevatorState, io, floor:
     startElevator(elevator, io);
   }
 }
+
+export const requestFloorByElevator = async (elevator: ElevatorState, io, floor: number) =>
+  requestFloor(elevator, io, floor, elevator.elevatorRequestedFloors);
+
+export const requestFloorByBuilding = async (elevator: ElevatorState, io, floor: number) =>
+  requestFloor(elevator, io, floor, elevator.buildingRequestedFloors);
 
 export const emitElevatorState = (elevator: ElevatorState, io) =>
   io.emit("elevator", elevator);

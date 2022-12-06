@@ -1,6 +1,6 @@
 'use strict';
 
-import { emitElevatorState, requestFloorByElevator } from './Elevator';
+import { emitElevatorState, requestFloorByBuilding, requestFloorByElevator } from './Elevator';
 import { getDefaultElevatorState } from '../shared/ElevatorState';
 
 import express from 'express';
@@ -32,6 +32,10 @@ io.on('connection', (socket: Socket) => {
 
   socket.on('request_from_elevator', (floor: number) => {
     requestFloorByElevator(elevators[0], io, floor);
+  })
+
+  socket.on('request_from_building', (floor: number) => {
+    requestFloorByBuilding(elevators[0], io, floor);
   })
 });
 
