@@ -28,20 +28,25 @@ app.get('*', (req, res) => {
   sendFile(res, 'index.html');
 });
 
-let historyOrder = 0;
-
 const history = new MongoClient('mongodb://127.0.0.1')
   .db('elevator')
   .collection('history');
 
-const logFloorRequest = (elevatorID: number, floor: number) => {
+const logFloorRequest = async (elevatorID: number, floor: number) => {
   history.insertOne({
-    order: historyOrder,
+    order: await history.countDocuments(),
     elevatorID,
     floor
   });
+};
 
-  historyOrder++;
+const emitRecentHistory = async (socket: Socket) => {
+  const recentEntries = await history.aggregate([
+    { $sort: { order: -1 } },
+    { $limit: 5 }
+  ]).toArray();
+
+  socket.emit('history', recentEntries);
 };
 
 io.on('connection', (socket: Socket) => {
@@ -57,6 +62,10 @@ io.on('connection', (socket: Socket) => {
   socket.on('request_from_building', (id: number, floor: number) => {
     logFloorRequest(id, floor);
     requestFloorByBuilding(elevators[id], io, floor);
+  })
+
+  socket.on('request_history', async () => {
+    await emitRecentHistory(socket);
   })
 });
 
