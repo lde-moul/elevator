@@ -1,6 +1,7 @@
 'use strict';
 
 import ElevatorState, { Direction } from "../shared/ElevatorState";
+import { elevatorProperties } from "../shared/Util";
 
 import { setTimeout } from "timers/promises";
 
@@ -14,7 +15,9 @@ const forgetCurrentFloor = (elevator: ElevatorState, io) => {
 }
 
 const getDistanceToRequestedFloorAbove = (elevator: ElevatorState): number => {
-  for (let floor = elevator.floor; floor < elevator.elevatorRequestedFloors.length; floor++) {
+  const top = elevatorProperties[elevator.id].top;
+
+  for (let floor = elevator.floor; floor < top; floor++) {
     if (isFloorRequested(floor, elevator))
       return floor - elevator.floor;
   }
@@ -22,7 +25,9 @@ const getDistanceToRequestedFloorAbove = (elevator: ElevatorState): number => {
 };
 
 const getDistanceToRequestedFloorBelow = (elevator: ElevatorState): number => {
-  for (let floor = elevator.floor; floor >= 0; floor--) {
+  const bottom = elevatorProperties[elevator.id].bottom;
+
+  for (let floor = elevator.floor; floor >= bottom; floor--) {
     if (isFloorRequested(floor, elevator))
       return elevator.floor - floor;
   }
@@ -77,7 +82,7 @@ const startElevator = async (elevator: ElevatorState, io) => {
   }
 };
 
-const requestFloor = async (elevator: ElevatorState, io, floor: number, requestedFloors: boolean[]) => {
+const requestFloor = async (elevator: ElevatorState, io, floor: number, requestedFloors: Object) => {
   if (floor == elevator.floor)
     return;
 

@@ -1,6 +1,6 @@
 'use strict';
 
-import { getFilledArray } from "../shared/Util";
+import { elevatorProperties } from "../shared/Util";
 
 export enum Direction {
   Up,
@@ -13,17 +13,23 @@ export default interface ElevatorState {
   floor: number;
   open: boolean;
   direction: Direction;
-  elevatorRequestedFloors: boolean[];
-  buildingRequestedFloors: boolean[];
+  elevatorRequestedFloors: Object;
+  buildingRequestedFloors: Object;
   processing: boolean;
 };
 
-export const getDefaultElevatorState = (id: number): ElevatorState => ({
-  id,
-  floor: 3,
-  open: true,
-  direction: Direction.Static,
-  processing: false,
-  elevatorRequestedFloors: getFilledArray(10, false),
-  buildingRequestedFloors: getFilledArray(10, false)
-});
+export const getDefaultElevatorState = (id: number): ElevatorState => {
+  let floors = {};
+  for (let floor = elevatorProperties[id].bottom; floor <= elevatorProperties[id].top; floor++)
+    floors[floor] = false;
+
+  return {
+    id,
+    floor: 3,
+    open: true,
+    direction: Direction.Static,
+    processing: false,
+    elevatorRequestedFloors: { ...floors },
+    buildingRequestedFloors: { ...floors }
+  }
+};
