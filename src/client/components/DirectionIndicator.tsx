@@ -1,12 +1,8 @@
 'use strict';
 
-import React from 'react';
+import { Direction } from "./ElevatorState";
 
-export enum Direction {
-  Up,
-  Static,
-  Down,
-}
+import React from 'react';
 
 interface DirectionIndicatorProps {
   direction: Direction;

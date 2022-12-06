@@ -2,13 +2,18 @@
 
 import BuildingPanel from './BuildingPanel';
 import ElevatorPanel from './ElevatorPanel';
+import ElevatorState from './ElevatorState';
 
 import React from 'react';
 
-export default () => {
+interface ElevatorProps {
+  state: ElevatorState;
+};
+
+export default ({ state }: ElevatorProps) => {
   return (
     <div>
-      <ElevatorPanel />
+      <ElevatorPanel state={state} />
       <BuildingPanel />
     </div>
   );
