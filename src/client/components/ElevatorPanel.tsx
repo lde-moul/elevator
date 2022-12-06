@@ -1,5 +1,6 @@
 'use strict';
 
+import DirectionIndicator, { Direction } from './DirectionIndicator';
 import FloorButton from './FloorButton';
 
 import React from 'react';
@@ -21,6 +22,7 @@ export default () => {
   return (
     <div>
       {buttons}
+      <DirectionIndicator direction={Direction.Static} />
     </div>
   );
 }
