@@ -17,6 +17,7 @@ body {
 
 .admin-toggle {
   background-color: grey;
+  border-color: grey;
   width: 500px;
   height: 50px;
   margin: 5px;
