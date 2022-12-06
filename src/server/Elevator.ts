@@ -37,6 +37,8 @@ const getBestDirection = (elevator: ElevatorState): Direction => {
     return Direction.Up;
   else if (distanceBelow < distanceAbove)
     return Direction.Down;
+  else if (distanceAbove !== 0 && distanceAbove !== Infinity)
+    return Direction.Up;
   else
     return Direction.Static;
 };
