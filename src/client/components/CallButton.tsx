@@ -1,6 +1,6 @@
 'use strict';
 
-import ElevatorState from './ElevatorState';
+import ElevatorState from '../../shared/ElevatorState';
 
 import React from 'react';
 

@@ -1,6 +1,5 @@
 'use strict';
 
-
 export const getFilledArray = (length: number, value: any): Array<any> =>
   new Array(length).fill(value);
 

@@ -1,7 +1,7 @@
 'use strict';
 
 import useSocket from '../socket';
-import { getFloorName } from '../Util';
+import { getFloorName } from '../../shared/Util';
 
 import React from 'react';
 

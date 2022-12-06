@@ -1,6 +1,6 @@
 'use strict';
 
-import { getFloorName } from '../Util';
+import { getFloorName } from '../../shared/Util';
 
 import React from 'react';
 

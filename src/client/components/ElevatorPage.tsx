@@ -1,6 +1,6 @@
 'use strict';
 
-import { defaultElevatorState } from './ElevatorState';
+import { defaultElevatorState } from '../../shared/ElevatorState';
 import Elevator from './Elevator';
 
 import React, { useState } from 'react';

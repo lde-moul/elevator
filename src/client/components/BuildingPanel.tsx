@@ -2,7 +2,7 @@
 
 import CallButton from './CallButton';
 import CurrentFloorIndicator from './CurrentFloorIndicator';
-import ElevatorState from './ElevatorState';
+import ElevatorState from '../../shared/ElevatorState';
 import FloorName from './FloorName';
 import '../../../css/main.css';
 

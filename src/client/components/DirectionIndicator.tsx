@@ -1,6 +1,6 @@
 'use strict';
 
-import { Direction } from "./ElevatorState";
+import { Direction } from '../../shared/ElevatorState';
 
 import React from 'react';
 

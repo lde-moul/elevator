@@ -2,7 +2,7 @@
 
 import DirectionIndicator from './DirectionIndicator';
 import DoorIndicator from './DoorIndicator';
-import ElevatorState, { Direction } from './ElevatorState';
+import ElevatorState, { Direction } from '../../shared/ElevatorState';
 import FloorButton from './FloorButton';
 
 import React from 'react';

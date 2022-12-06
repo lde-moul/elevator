@@ -1,6 +1,6 @@
 'use strict';
 
-import { getFilledArray } from "../Util";
+import { getFilledArray } from "../shared/Util";
 
 export enum Direction {
   Up,
