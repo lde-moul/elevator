@@ -1,4 +1,5 @@
-Assumes the database is served through 127.0.0.1.
+- Tested under Node.js 19.
+- Assumes the database is served through 127.0.0.1.
 
 ```
 npm install
