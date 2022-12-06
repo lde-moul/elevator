@@ -2,17 +2,24 @@
 
 import BuildingPanel from './BuildingPanel';
 import ElevatorPanel from './ElevatorPanel';
-import { getDefaultElevatorState } from '../../shared/ElevatorState';
+import ElevatorState, { getDefaultElevatorState } from '../../shared/ElevatorState';
 import useSocket from '../socket';
 
 import React, { useEffect, useState } from 'react';
 
-export default () => {
-  const [state, setState] = useState(getDefaultElevatorState());
+interface ElevatorProps {
+  elevatorID: number;
+};
+
+export default ({ elevatorID }: ElevatorProps) => {
+  const [state, setState] = useState(getDefaultElevatorState(elevatorID));
   const socket = useSocket();
 
   useEffect(() => {
-    socket.on('elevator', setState);
+    socket.on('elevator', (newState: ElevatorState) => {
+      if (newState.id == state.id)
+        setState(newState);
+    });
 
     return () => {
       socket.off('elevator');

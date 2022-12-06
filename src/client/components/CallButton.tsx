@@ -6,13 +6,14 @@ import React from 'react';
 
 interface CallButtonProps {
   floor: number;
+  elevatorID: number;
 };
 
-export default ({ floor }: CallButtonProps) => {
+export default ({ floor, elevatorID }: CallButtonProps) => {
   const socket = useSocket();
 
   const handlePress = () =>
-    socket.emit('request_from_building', floor);
+    socket.emit('request_from_building', elevatorID, floor);
 
   return (
     <button type="button" onClick={handlePress}>

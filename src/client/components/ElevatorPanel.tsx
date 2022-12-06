@@ -13,7 +13,7 @@ interface ElevatorPanelProps {
 
 export default ({ state }: ElevatorPanelProps) => {
   const buttons = state.elevatorRequestedFloors.map((requested, floor) =>
-    <FloorButton floor={floor} active={requested} />,
+    <FloorButton floor={floor} active={requested} elevatorID={state.id}/>,
   ).reverse();
 
   return (

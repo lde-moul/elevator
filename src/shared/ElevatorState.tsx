@@ -9,6 +9,7 @@ export enum Direction {
 }
 
 export default interface ElevatorState {
+  id: number;
   floor: number;
   open: boolean;
   direction: Direction;
@@ -17,7 +18,8 @@ export default interface ElevatorState {
   processing: boolean;
 };
 
-export const getDefaultElevatorState = (): ElevatorState => ({
+export const getDefaultElevatorState = (id: number): ElevatorState => ({
+  id,
   floor: 3,
   open: true,
   direction: Direction.Static,
