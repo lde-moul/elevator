@@ -16,6 +16,19 @@ export const mapFlexibleArray = (array: Object, callback: Function) => {
   return mappedArray;
 };
 
+export const filterFlexibleArray = (array: Object, callback: Function) => {
+  let filteredArray = [];
+
+  Object.keys(array)
+    .map(i => Number(i))
+    .forEach((i) => {
+      if (callback(array[i], i))
+        filteredArray[i] = array[i]
+    });
+
+  return filteredArray;
+};
+
 export const elevatorProperties = [
   {
     bottom: 0,

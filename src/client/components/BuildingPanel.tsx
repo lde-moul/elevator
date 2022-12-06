@@ -3,7 +3,7 @@
 import CallButton from './CallButton';
 import CurrentFloorIndicator from './CurrentFloorIndicator';
 import ElevatorState from '../../shared/ElevatorState';
-import { mapFlexibleArray } from '../../shared/Util';
+import { elevatorProperties, filterFlexibleArray, mapFlexibleArray } from '../../shared/Util';
 import FloorName from './FloorName';
 import '../../../css/main.css';
 
@@ -14,7 +14,10 @@ interface BuildingPanelProps {
 };
 
 export default ({ state }: BuildingPanelProps) => {
-  const cells = mapFlexibleArray(state.buildingRequestedFloors, (requested, floor) =>
+  const filteredFloors = filterFlexibleArray(state.buildingRequestedFloors, (_, floor) =>
+    elevatorProperties[state.id].condition(floor)
+  );
+  const cells = mapFlexibleArray(filteredFloors, (requested, floor) =>
     [
       <FloorName floor={floor} />,
       <CurrentFloorIndicator active={floor == state.floor} />,

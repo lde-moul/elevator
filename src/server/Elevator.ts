@@ -83,6 +83,8 @@ const startElevator = async (elevator: ElevatorState, io) => {
 };
 
 const requestFloor = async (elevator: ElevatorState, io, floor: number, requestedFloors: Object) => {
+  if (!elevatorProperties[elevator.id].condition(floor))
+    return;
   if (floor == elevator.floor)
     return;
 
