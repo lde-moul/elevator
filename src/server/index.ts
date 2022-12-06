@@ -2,6 +2,7 @@
 
 import { emitElevatorState, requestFloorByBuilding, requestFloorByElevator } from './Elevator';
 import { getDefaultElevatorState } from '../shared/ElevatorState';
+import { elevatorProperties } from '../shared/Util';
 
 import express from 'express';
 import http from 'http';
@@ -55,11 +56,17 @@ io.on('connection', (socket: Socket) => {
   );
 
   socket.on('request_from_elevator', (id: number, floor: number) => {
+    if (id < 0 || id > elevatorProperties.length)
+      return;
+
     logFloorRequest(id, floor);
     requestFloorByElevator(elevators[id], io, floor);
   })
 
   socket.on('request_from_building', (id: number, floor: number) => {
+    if (id < 0 || id > elevatorProperties.length)
+      return;
+
     logFloorRequest(id, floor);
     requestFloorByBuilding(elevators[id], io, floor);
   })
