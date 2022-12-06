@@ -2,15 +2,13 @@
 
 import BuildingPanel from './BuildingPanel';
 import ElevatorPanel from './ElevatorPanel';
-import ElevatorState from '../../shared/ElevatorState';
+import { getDefaultElevatorState } from '../../shared/ElevatorState';
 
-import React from 'react';
+import React, { useState } from 'react';
 
-interface ElevatorProps {
-  state: ElevatorState;
-};
+export default () => {
+  const [state, setState] = useState(getDefaultElevatorState());
 
-export default ({ state }: ElevatorProps) => {
   return (
     <div>
       <ElevatorPanel state={state} />
