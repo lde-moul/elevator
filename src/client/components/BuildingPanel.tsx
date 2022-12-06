@@ -16,7 +16,7 @@ export default ({ state }: BuildingPanelProps) => {
   const cells = state.buildingRequestedFloors.map((requested, floor) =>
     [
       <FloorName floor={floor} />,
-      <CurrentFloorIndicator active={requested} />,
+      <CurrentFloorIndicator active={floor == state.floor} />,
       <CallButton floor={floor} />,
     ]
   ).reverse();
