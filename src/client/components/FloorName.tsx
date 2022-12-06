@@ -1,5 +1,7 @@
 'use strict';
 
+import { getFloorName } from '../Util';
+
 import React from 'react';
 
 interface FloorNameProps {
@@ -9,7 +11,7 @@ interface FloorNameProps {
 export default ({ floor }: FloorNameProps) => {
   return (
     <div>
-      {floor}
+      {getFloorName(floor)}
     </div>
   );
 }

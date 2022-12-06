@@ -1,5 +1,7 @@
 'use strict';
 
+import { getFloorName } from '../Util';
+
 import React from 'react';
 
 interface FloorButtonProps {
@@ -8,9 +10,11 @@ interface FloorButtonProps {
 };
 
 export default ({ floor, active }: FloorButtonProps) => {
+  const name = getFloorName(floor);
+
   return (
     <button>
-      {active ? `< ${floor} >` : floor}
+      {active ? `< ${name} >` : name}
     </button>
   );
 }
