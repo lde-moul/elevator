@@ -1,5 +1,6 @@
 'use strict';
 
+import ElevatorPage from './ElevatorPage';
 import useSocket, { initializeSocket } from '../socket';
 
 import React from 'react';
@@ -11,5 +12,5 @@ export default ({}: AppProps) => {
   if (!useSocket())
     initializeSocket();
 
-  return <div></div>;
+  return <ElevatorPage />;
 };
