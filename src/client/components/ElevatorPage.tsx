@@ -1,12 +1,12 @@
 'use strict';
 
-import { defaultElevatorState } from '../../shared/ElevatorState';
+import { getDefaultElevatorState } from '../../shared/ElevatorState';
 import Elevator from './Elevator';
 
 import React, { useState } from 'react';
 
 export default () => {
-  const [state, setState] = useState(defaultElevatorState);
+  const [state, setState] = useState(getDefaultElevatorState());
 
   return (
     <div>

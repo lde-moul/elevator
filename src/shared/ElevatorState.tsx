@@ -14,12 +14,14 @@ export default interface ElevatorState {
   direction: Direction;
   elevatorRequestedFloors: boolean[];
   buildingRequestedFloors: boolean[];
+  processing: boolean;
 };
 
-export const defaultElevatorState: ElevatorState = {
+export const getDefaultElevatorState = (): ElevatorState ({
   floor: 3,
-  open: false,
+  open: true,
   direction: Direction.Static,
+  processing: false,
   elevatorRequestedFloors: getFilledArray(10, false),
   buildingRequestedFloors: getFilledArray(10, false)
-};
+});
