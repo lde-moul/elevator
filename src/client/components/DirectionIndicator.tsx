@@ -15,8 +15,10 @@ export default ({ direction }: DirectionIndicatorProps) => {
     [Direction.Down]: 'v',
   };
 
+  const className = 'square indicator direction-indicator-' + (direction !== Direction.Static ? 'on' : 'off');
+
   return (
-    <div>
+    <div className={className}>
       {directions[direction]}
     </div>
   );

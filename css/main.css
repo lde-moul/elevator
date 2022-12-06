@@ -1,5 +1,121 @@
+body {
+  margin: 0px;
+  background: rgb(32, 32, 36);
+}
+
+.flex-h {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+}
+
+.flex-v {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.admin-toggle {
+  background-color: grey;
+  width: 500px;
+  height: 50px;
+  margin: 5px;
+}
+
+.elevator {
+  background-color: rgb(48, 48, 54);
+  border-radius: 20px;
+  padding: 10px;
+  margin: 5px;
+}
+
+.elevator-panel {
+  background-color: rgb(64, 64, 72);
+  border-radius: 20px;
+  padding: 10px;
+  margin: 5px;
+}
+
 .building-panel {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(10, 1fr);
+
+  background-color: rgb(64, 64, 72);
+  border-radius: 20px;
+  padding: 10px;
+  margin: 5px;
+}
+
+.square {
+  width: 50px;
+  height: 50px;
+  box-sizing: border-box;
+  margin: 5px;
+  border-width: 5px;
+  text-align: center;
+}
+
+.floor-button-off {
+  background-color: green;
+  border-color: green;
+}
+
+.floor-button-on {
+  background-color: limegreen;
+  border-color: limegreen;
+  box-shadow: 0px 0px 10px limegreen;
+}
+
+.indicator {
+  border-style: outset;
+  border-radius: 25px;
+}
+
+.direction-indicator-off {
+  background-color: darkblue;
+  border-color: darkblue;
+}
+
+.direction-indicator-on {
+  background-color: blue;
+  border-color: blue;
+  box-shadow: 0px 0px 10px blue;
+}
+
+.door-indicator-off {
+  background-color: darkgoldenrod;
+  border-color: darkgoldenrod;
+}
+
+.door-indicator-on {
+  background-color: yellow;
+  border-color: yellow;
+  box-shadow: 0px 0px 10px yellow;
+}
+
+.floor-name {
+  border: none;
+}
+
+.current-floor-indicator-off {
+  background-color: green;
+  border-color: green;
+}
+
+.current-floor-indicator-on {
+  background-color: limegreen;
+  border-color: limegreen;
+  box-shadow: 0px 0px 10px limegreen;
+}
+
+.call-button-off {
+  background-color: darkred;
+  border-color: darkred;
+}
+
+.call-button-on {
+  background-color: red;
+  border-color: red;
+  box-shadow: 0px 0px 10px red;
 }

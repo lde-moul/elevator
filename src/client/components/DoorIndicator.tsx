@@ -7,9 +7,10 @@ interface DoorIndicatorProps {
 };
 
 export default ({ open }: DoorIndicatorProps) => {
+  const className = 'square indicator door-indicator-' + (open ? 'on' : 'off');
+
   return (
-    <div>
-      {open ? 'OPEN' : 'CLOSED'}
+    <div className={className}>
     </div>
   );
 }

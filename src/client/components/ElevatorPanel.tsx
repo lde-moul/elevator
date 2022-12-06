@@ -4,6 +4,7 @@ import DirectionIndicator from './DirectionIndicator';
 import DoorIndicator from './DoorIndicator';
 import ElevatorState from '../../shared/ElevatorState';
 import FloorButton from './FloorButton';
+import '../../../css/main.css';
 
 import React from 'react';
 
@@ -17,7 +18,7 @@ export default ({ state }: ElevatorPanelProps) => {
   ).reverse();
 
   return (
-    <div>
+    <div className='elevator-panel flex-v'>
       {buttons}
       <DirectionIndicator direction={state.direction} />
       <DoorIndicator open={state.open} />

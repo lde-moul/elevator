@@ -4,6 +4,7 @@ import BuildingPanel from './BuildingPanel';
 import ElevatorPanel from './ElevatorPanel';
 import ElevatorState, { getDefaultElevatorState } from '../../shared/ElevatorState';
 import useSocket from '../socket';
+import '../../../css/main.css';
 
 import React, { useEffect, useState } from 'react';
 
@@ -27,7 +28,7 @@ export default ({ elevatorID }: ElevatorProps) => {
   }, []);
 
   return (
-    <div>
+    <div className='flex-h elevator'>
       <ElevatorPanel state={state} />
       <BuildingPanel state={state} />
     </div>

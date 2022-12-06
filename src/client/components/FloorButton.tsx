@@ -2,6 +2,7 @@
 
 import useSocket from '../socket';
 import { getFloorName } from '../../shared/Util';
+import '../../../css/main.css';
 
 import React from 'react';
 
@@ -20,10 +21,11 @@ export default ({ floor, active, elevatorID }: FloorButtonProps) => {
   };
 
   const name = getFloorName(floor);
+  const className = 'square floor-button-' + (active ? 'on' : 'off');
 
   return (
-    <button type="button" onClick={handlePress}>
-      {active ? `< ${name} >` : name}
+    <button type="button" onClick={handlePress} className={className}>
+      {name}
     </button>
   );
 }

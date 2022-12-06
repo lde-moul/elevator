@@ -17,7 +17,7 @@ export default ({ state }: BuildingPanelProps) => {
     [
       <FloorName floor={floor} />,
       <CurrentFloorIndicator active={floor == state.floor} />,
-      <CallButton floor={floor} elevatorID={state.id}/>,
+      <CallButton active={requested} floor={floor} elevatorID={state.id}/>,
     ]
   ).reverse();
 

@@ -17,8 +17,8 @@ export default ({}: AppProps) => {
   const Page = admin ? AdminPage : ElevatorPage;
 
   return (
-    <div>
-      <button type="button" onClick={handleAdminToggle}>
+    <div className='flex-v'>
+      <button type="button" onClick={handleAdminToggle} className='admin-toggle'>
         Show {admin ? 'user' : 'administrator'} section
       </button>
 

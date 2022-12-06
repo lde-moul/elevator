@@ -6,7 +6,7 @@ import React from 'react';
 
 export default () => {
   return (
-    <div>
+    <div className='flex-h'>
       <Elevator elevatorID={0} />
       <Elevator elevatorID={1} />
     </div>
